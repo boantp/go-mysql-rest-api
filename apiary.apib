@@ -1,13 +1,13 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://tax-calculator.apiblueprint.org/
 
 # shopee
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+tax-calculator is a simple API for store and display tax amounts.
 
-## Questions Collection [/questions]
+## Order Collection [/order/{store_id}]
 
-### List All Questions [GET]
+### List All Order Item [GET]
 
 + Response 200 (application/json)
 
@@ -17,27 +17,34 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "published_at": "2015-08-05T08:40:51.620Z",
                 "choices": [
                     {
-                        "choice": "Swift",
-                        "votes": 2048
+                        "product_name": "Lucky Stretch",
+                        "tax_code": 2,
+                        "tax_name": "Tobacco",
+                        "amount": 1000,
+                        "tax_amount": 100,
+                        "total_amount": 1100
                     }, {
-                        "choice": "Python",
-                        "votes": 1024
+                        "product_name": "Big Mac",
+                        "tax_code": 1,
+                        "tax_name": "Food",
+                        "amount": 1000,
+                        "tax_amount": 20,
+                        "total_amount": 1020
                     }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
+                        "product_name": "Movie",
+                        "tax_code": 3,
+                        "tax_name": "Entertainment",
+                        "amount": 150,
+                        "tax_amount": 0.5,
+                        "total_amount": 150.5
                     }
                 ]
             }
         ]
 
-### Create a New Question [POST]
+### Create an Order [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+Insert total amount, total tax amount, grand total into order.
 
 + Request (application/json)
 
