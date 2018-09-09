@@ -13,40 +13,38 @@ Display all order item with tax calculation
 
 + Response 200 (application/json)
 
-        [
-            {
-                "response_code": "1",
-                "response_description": "success",
-                "store_id": 1,
-                "total_amount": 2150,
-                "total_tax_amount": 120.5,
-                "grand_total": 2270.5,
-                "data": [
-                    {
-                        "product_name": "Lucky Stretch",
-                        "tax_code": 2,
-                        "tax_name": "Tobacco",
-                        "amount": 1000,
-                        "tax_amount": 100,
-                        "total_amount_item": 1100
-                    }, {
-                        "product_name": "Big Mac",
-                        "tax_code": 1,
-                        "tax_name": "Food",
-                        "amount": 1000,
-                        "tax_amount": 20,
-                        "total_amount_item": 1020
-                    }, {
-                        "product_name": "Movie",
-                        "tax_code": 3,
-                        "tax_name": "Entertainment",
-                        "amount": 150,
-                        "tax_amount": 0.5,
-                        "total_amount_item": 150.5
-                    }
-                ]
-            }
-        ]
+        {
+            "response_code": "1",
+            "response_description": "success",
+            "store_id": 1,
+            "total_amount": 2150,
+            "total_tax_amount": 120.5,
+            "grand_total": 2270.5,
+            "data": [
+                {
+                    "product_name": "Lucky Stretch",
+                    "tax_code": 2,
+                    "tax_name": "Tobacco",
+                    "amount": 1000,
+                    "tax_amount": 100,
+                    "total_amount_item": 1100
+                }, {
+                    "product_name": "Big Mac",
+                    "tax_code": 1,
+                    "tax_name": "Food",
+                    "amount": 1000,
+                    "tax_amount": 20,
+                    "total_amount_item": 1020
+                }, {
+                    "product_name": "Movie",
+                    "tax_code": 3,
+                    "tax_name": "Entertainment",
+                    "amount": 150,
+                    "tax_amount": 0.5,
+                    "total_amount_item": 150.5
+                }
+            ]
+        }
 
 ### Create an Order [POST]
 
@@ -54,13 +52,13 @@ Insert total amount, total tax amount, grand total into order.
 
 + Response 201 (application/json)
 
-            {
-                "response_code": "1",
-                "response_description": "success",
-                "data": {
-                    "custom_message": "Order Created"
-                }
+        {
+            "response_code": "1",
+            "response_description": "success",
+            "data": {
+                "custom_message": "Order Created"
             }
+        }
         
         
 ## Cart Collection [/cart]
@@ -71,22 +69,22 @@ Insert Product name, tax code, amount with tax calculation process.
 
 + Request (application/json)
 
-            {
-                "store_id": 1,
-                "product_name": "Big Mac",
-                "tax_code": 1,
-                "amount": 1000
-            }
+        {
+            "store_id": 1,
+            "product_name": "Big Mac",
+            "tax_code": 1,
+            "amount": 1000
+        }
 
 + Response 201 (application/json)
 
-            {
-                "response_code": "1",
-                "response_description": "success",
-                "data": {
-                    "custom_message": "Cart Created"
-                }
+        {
+            "response_code": "1",
+            "response_description": "success",
+            "data": {
+                "custom_message": "Cart Created"
             }
+        }
 
 
 ## Tax Code Collection [/tax_code]
@@ -97,20 +95,20 @@ List all tax code, example: food, tobacco and entertainment
 
 + Response 200 (application/json)
 
-            {
-                "response_code": "1",
-                "response_description": "success",
-                "data": [
-                    {
-                        "tax_code_id": 1,
-                        "name": "food"
-    
-                    }, {
-                        "tax_code_id": 2,
-                        "name": "tobacco"
-                    }, {
-                        "tax_code_id": 3,
-                        "name": "entertainment"
-                    }
-                ]
-            }
+        {
+            "response_code": "1",
+            "response_description": "success",
+            "data": [
+                {
+                    "tax_code_id": 1,
+                    "name": "food"
+
+                }, {
+                    "tax_code_id": 2,
+                    "name": "tobacco"
+                }, {
+                    "tax_code_id": 3,
+                    "name": "entertainment"
+                }
+            ]
+        }
