@@ -15,9 +15,9 @@ type (
 )
 
 type TaxCodeResp struct {
-	RespCode string         `json:"response_code"`
-	RespDesc string         `json:"response_description"`
-	Data     models.TaxCode `json:"data"`
+	RespCode string           `json:"response_code"`
+	RespDesc string           `json:"response_description"`
+	Data     []models.TaxCode `json:"data"`
 }
 
 func NewTaxCodeController() *TaxCodeController {
@@ -27,14 +27,10 @@ func NewTaxCodeController() *TaxCodeController {
 // GetUser retrieves an individual user resource
 func (tc TaxCodeController) GetTaxCode(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	//Fetch data from model
-	//....
-	// Stub an example user
-	u := models.TaxCode{}
-	u.Name = "food"
-	u.TaxCodeId = 1
+	taxCode := models.FetchTaxCode()
 
 	//define response
-	d := TaxCodeResp{"1", "success", u}
+	d := TaxCodeResp{"1", "success", taxCode}
 
 	// Marshal provided interface into JSON structure
 	uj, _ := json.Marshal(d)

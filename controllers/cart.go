@@ -42,11 +42,16 @@ func (cc CartController) CreateCart(w http.ResponseWriter, r *http.Request, p ht
 	x.taxCode = u.TaxCode
 	myTax := setTaxAmount(x)
 
-	//Insert OrderDetails : amount, tax_amount, total_amount
+	//Inject taxamount and totalamount into object
 	u.TaxAmount = myTax.taxAmount
 	u.TotalAmount = myTax.taxAmount + u.Amount
+	u.TaxName = myTax.taxName
+
 	//Query insert into model
-	//....
+	_, err := models.CreateOrderDetails(u)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	//define response
 	d := ResponseData{"1", "success", CustomMessage{"Cart Created"}}
@@ -68,14 +73,17 @@ func setTaxAmount(t tax) tax {
 		aFood := food{}
 		aFood.amount = t.amount
 		result.taxAmount = calcTaxAmount(aFood)
+		result.taxName = "Food"
 	} else if t.taxCode == 2 {
 		aTobbaco := tobacco{}
 		aTobbaco.amount = t.amount
 		result.taxAmount = calcTaxAmount(aTobbaco)
+		result.taxName = "Tobacco"
 	} else if t.taxCode == 3 {
 		aEntertainment := entertainment{}
 		aEntertainment.amount = t.amount
 		result.taxAmount = calcTaxAmount(aEntertainment)
+		result.taxName = "Entertainment"
 	} else {
 		result.taxAmount = 0
 	}
@@ -90,6 +98,7 @@ type tax struct {
 	storeId     int
 	productName string
 	taxCode     int
+	taxName     string
 	amount      float64
 	taxAmount   float64
 }
