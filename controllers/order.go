@@ -15,14 +15,11 @@ type (
 	OrderController struct{}
 )
 
-type OrderCodeResp struct {
-	RespCode       string                   `json:"response_code"`
-	RespDesc       string                   `json:"response_description"`
-	Data           []models.DataOrderDetail `json:"data"`
-	StoreId        int                      `json:"store_id"`
-	TotalAmount    float64                  `json:"total_amount"`
-	TotalTaxAmount float64                  `json:"total_tax_amount"`
-	GrandTotal     float64                  `json:"grand_total"`
+type OrderResp struct {
+	RespCode string       `json:"response_code"`
+	RespDesc string       `json:"response_description"`
+	Data     []models.Tax `json:"data"`
+	models.Orders
 }
 
 func NewOrderController() *OrderController {
@@ -42,7 +39,7 @@ func (oc OrderController) GetMyBill(w http.ResponseWriter, r *http.Request, p ht
 	totalBill := models.TotalBillByStoreIdForDraftOrder(store_id)
 
 	//define response
-	d := OrderCodeResp{"1", "success", bill, store_id, totalBill.TotalAmount, totalBill.TotalTaxAmount, totalBill.GrandTotal}
+	d := OrderResp{"1", "success", bill, totalBill}
 
 	// Marshal provided interface into JSON structure
 	uj, _ := json.Marshal(d)

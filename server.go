@@ -24,8 +24,6 @@ func main() {
 	r.POST("/cart", cc.CreateCart)
 	//GET my bill with tax calculation result from order_details
 	r.GET("/order/:store_id", oc.GetMyBill)
-	//POST my bill into orders and update order_status at order_details
-	//r.POST("/order/:store_id", oc.CreateMyOrder)
 
 	// Fire up the server
 	http.ListenAndServe("localhost:3000", r)
