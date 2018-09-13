@@ -26,7 +26,7 @@ services:
       dockerfile: docker/db/Dockerfile
     image: my-mysql:1.0
     container_name: database.dev
-    hostname: localhost
+    hostname: database.dev
     #command: mysqld --user=root --verbose
     ports:
       - "3306:3306"
