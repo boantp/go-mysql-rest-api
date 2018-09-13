@@ -4,33 +4,45 @@
     <meta charset="UTF-8">
     <title>Create Tax Object</title>
     <style>
-        html, body {
-            padding: 0;
-            border: 0;
-            margin: 0;
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
-        body, form {
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: center;
-            align-items: center;
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
-        input {
-            width: 60vw;
-            font-size: 5rem;
-            color: blue;
-            border: 1px solid black;
+
+        input[type=submit]:hover {
+            background-color: #45a049;
         }
-    </style>
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+</style>
 </head>
 <body>
 
-<h1>Create New Cart</h1>
-<form method="post" action="/cars/create/process">
+<h1>Create Tax Object</h1>
+<form method="post" action="/front/cart/process">
     <input type="hidden" name="store_id" placeholder="store_id" value="1">
     <input type="text" name="product_name" placeholder="product_name" required>
-    <select>
+    <select name="tax_code_id">
         {{range .}}
         <option value="{{.TaxCodeId}}">{{.Name}}</option>
         {{end}}
