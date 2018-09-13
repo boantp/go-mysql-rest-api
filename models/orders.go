@@ -14,7 +14,7 @@ type Orders struct {
 func TotalBillByStoreIdForDraftOrder(storeId int) Orders {
 	total := Orders{}
 
-	row := config.DB.QueryRow("SELECT store_id, SUM(amount) as total_amount, SUM(tax_amount) as total_tax_amount, SUM(total_amount) as grand_total FROM order_details where order_status = 0 and store_id = ?", storeId)
+	row := config.DB.QueryRow("SELECT store_id, SUM(amount) as total_amount, SUM(tax_amount) as total_tax_amount, SUM(total_amount) as grand_total FROM order_details where order_status = 0 and store_id = ? GROUP BY store_id", storeId)
 
 	err := row.Scan(&total.StoreId, &total.TotalAmount, &total.TotalTaxAmount, &total.GrandTotal)
 	checkErr(err)

@@ -1,17 +1,27 @@
 package main
 
 import (
-	// Standard library packages
+	"fmt"
+	"log"
 	"net/http"
+	// Standard library packages
 
-	// Third party packages
 	"github.com/boantp/go-mysql-rest-api/controllers"
+
 	"github.com/julienschmidt/httprouter"
+	// Third party packages
 )
 
+func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprintf(w, "Welcome!\n")
+}
+
+func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	fmt.Fprintf(w, "hello, %s!\n", ps.ByName("name"))
+}
+
 func main() {
-	// Instantiate a new router
-	r := httprouter.New()
+	router := httprouter.New()
 
 	// Get Controller instance
 	tc := controllers.NewTaxCodeController()
@@ -19,12 +29,14 @@ func main() {
 	oc := controllers.NewOrderController()
 
 	// Get a tax code resource
-	r.GET("/tax_code", tc.GetTaxCode)
+	router.GET("/tax_code", tc.GetTaxCode)
 	//POST object tax into cart or order_details
-	r.POST("/cart", cc.CreateCart)
+	router.POST("/cart", cc.CreateCart)
 	//GET my bill with tax calculation result from order_details
-	r.GET("/order/:store_id", oc.GetMyBill)
+	router.GET("/order/:store_id", oc.GetMyBill)
 
-	// Fire up the server
-	http.ListenAndServe("localhost:3000", r)
+	router.GET("/", Index)
+	router.GET("/hello/:name", Hello)
+
+	log.Fatal(http.ListenAndServe(":3000", router))
 }
