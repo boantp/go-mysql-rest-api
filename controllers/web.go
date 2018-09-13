@@ -23,9 +23,21 @@ func NewWebController() *WebController {
 	return &WebController{}
 }
 
+//custom var
+type BaseUrl string
+
+const (
+	development BaseUrl = "http://localhost:3000/"
+	staging     BaseUrl = "http://localhost:4000/"
+	production  BaseUrl = "http://localhost:5000/"
+)
+
 func (web WebController) Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	//get tax code
-	url := "http://localhost:3000/tax_code"
+	var buffer bytes.Buffer
+	buffer.WriteString(string(development))
+	buffer.WriteString("tax_code")
+	url := buffer.String()
 	body := RequestGet(url)
 
 	tax := TaxCodeResp{}
@@ -70,7 +82,10 @@ func (web WebController) FrontCartProcess(w http.ResponseWriter, r *http.Request
 	uj, _ := json.Marshal(addTax)
 
 	//POST localhost:3000/cart
-	url := "http://localhost:3000/cart"
+	var buffer bytes.Buffer
+	buffer.WriteString(string(development))
+	buffer.WriteString("cart")
+	url := buffer.String()
 
 	//make post request
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(uj))
@@ -99,7 +114,11 @@ func (web WebController) FrontCartProcess(w http.ResponseWriter, r *http.Request
 
 func (web WebController) ViewBill(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	//get order by store_id
-	url := "http://localhost:3000/order/1"
+	var buffer bytes.Buffer
+	buffer.WriteString(string(development))
+	buffer.WriteString("order/1")
+	url := buffer.String()
+
 	body := RequestGet(url)
 
 	order := OrderResp{}
