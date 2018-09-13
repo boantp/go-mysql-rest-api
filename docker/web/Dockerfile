@@ -1,30 +1,18 @@
 # Telling to use Docker's golang ready image
-FROM golang:1.8
+FROM golang:onbuild
+EXPOSE 8080
 
-MAINTAINER boantp
+RUN apt-get update && apt-get install -y mysql-client
+RUN go get -u github.com/go-sql-driver/mysql
+RUN go get -u github.com/boantp/go-mysql-rest-api
+# ADD . /home
 
-EXPOSE 3000 443
+# WORKDIR /home
 
-RUN apt-get update -y && \
-	apt-get install -y \
-	vim
+# RUN \
+#         apk add --no-cache bash git openssh && \
+#         go get -u github.com/minio/minio-go
+        
 
-# Install and build binaries revel for this server
-RUN go get github.com/boantp/go-mysql-rest-api
-RUN go get github.com/go-sql-driver/mysql
+# CMD [ "go", "run", "main.go" ]
 
-# Set pwd to the go folder
-RUN mkdir /app
-ADD . /app/
-WORKDIR  /app
-
-RUN go build -o server
-RUN go run server.go
-CMD ["/app/server"]
-
-# Copy the entrypoint file
-ADD /docker/web/infinite_loop.sh /infinite_loop.sh
-RUN chmod +x /infinite_loop.sh
-
-# Start process
-ENTRYPOINT ["/infinite_loop.sh"]

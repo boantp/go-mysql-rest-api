@@ -1,6 +1,4 @@
-FROM mysql:5.7
-
-MAINTAINER boantp
+FROM mysql
 
 VOLUME ["/var/lib/mysql"]
 
