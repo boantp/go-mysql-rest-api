@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bill</title>
+    <style>
+        html, body, p {
+            padding: 0;
+            border: 0;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: left;
+            height: 100vh;
+        }
+        p {
+            margin-left: 4rem;
+            font-size: 2rem;
+            color: black;
+          }
+        .link {
+            font-size: 1rem;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<h2>My Bill</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Tax Code</th>
+    <th>Type</th>
+    <th>Amount</th>
+    <th>Tax Amount</th>
+    <th>Total Amount</th>
+  </tr>
+{{range .Data}}
+  <tr>
+    <td>{{.ProductName}}</td>
+    <td>{{.TaxCode}}</td>
+    <td>{{.TaxName}}</td>
+    <td>{{.Amount}}</td>
+    <td>{{.TaxAmount}}</td>
+    <td>{{.TotalAmount}}</td>
+  </tr>
+{{end}}
+</table>
+
+<ul>
+  <li>Total Amount: {{.TotalTaxAmount}}</li>
+  <li>Total Tax Amount: {{.TotalAmount}}</li>
+  <li>Grand Total: {{.GrandTotal}}</li>
+</ul>  
+
+<p class="link"><a href="/">Insert A Cart</a></p>
+</body>
+</html>
