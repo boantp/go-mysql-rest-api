@@ -11,20 +11,20 @@ var DB *sql.DB
 
 func init() {
 	var err error
-	DB, err = sql.Open("mysql", "root:pasaribu@tcp(localhost:3306)/shopee")
+	DB, err = sql.Open("mysql", "root:pasaribu@/shopee")
 	checkErr(err)
+	//tcp(localhost:3306)
+	// rows, err := DB.Query("SELECT tax_code_id, name FROM tax_code")
+	// checkErr(err)
 
-	rows, err := DB.Query("SELECT tax_code_id, name FROM tax_code")
-	checkErr(err)
-
-	for rows.Next() {
-		var tax_code_id int
-		var name string
-		err = rows.Scan(&tax_code_id, &name)
-		checkErr(err)
-		fmt.Println(tax_code_id)
-		fmt.Println(name)
-	}
+	// for rows.Next() {
+	// 	var tax_code_id int
+	// 	var name string
+	// 	err = rows.Scan(&tax_code_id, &name)
+	// 	checkErr(err)
+	// 	fmt.Println(tax_code_id)
+	// 	fmt.Println(name)
+	// }
 	fmt.Println("You connected to your database.")
 }
 
