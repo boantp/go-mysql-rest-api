@@ -1,4 +1,4 @@
-FROM mysql
+FROM mariadb
 
 VOLUME ["/var/lib/mysql"]
 
