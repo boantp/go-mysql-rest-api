@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Tax Object</title>
+    <title>Created Cart</title>
     <style>
         input[type=text], select {
             width: 100%;
@@ -38,19 +38,8 @@
 </head>
 <body>
 
-<h1>Create Tax Object</h1>
-<form method="post" action="/front/cart/process">
-    <input type="hidden" name="store_id" placeholder="store_id" value="1">
-    <input type="text" name="product_name" placeholder="product_name" required>
-    <select name="tax_code_id">
-        {{range .}}
-        <option value="{{.TaxCodeId}}">{{.Name}}</option>
-        {{end}}
-    </select>
-    <input type="text" name="amount" placeholder="amount" required>
-    <input type="submit">
-</form>
-<p class="link"><a href="/order/1">Check Bill</a></p>
-
+<p>Input New Cart Success</p>
+<p><a href="">RespStatus : {{.Status}} - RespHeader : {{.Header}}</a></p>
+<p class="link"><a href="/">Add Another Cart</a></p>
 </body>
 </html>

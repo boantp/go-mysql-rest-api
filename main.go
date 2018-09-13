@@ -130,6 +130,7 @@ func FrontCartProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Param
 	// fmt.Println("response Headers:", resp.Header)
 	// body, _ := ioutil.ReadAll(resp.Body)
 	// fmt.Println("response Body:", string(body))
+
 	config.TPL.ExecuteTemplate(w, "created.gohtml", resp)
 }
 
