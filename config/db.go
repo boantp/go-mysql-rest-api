@@ -2,7 +2,6 @@ package config
 
 import (
 	"database/sql"
-	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -14,7 +13,7 @@ func init() {
 	DB, err = sql.Open("mysql", "root:pasaribu@tcp(database.dev:3306)/shopee")
 	checkErr(err)
 
-	fmt.Println("You connected to your database.")
+	//fmt.Println("You connected to your database.")
 }
 
 func checkErr(err error) {

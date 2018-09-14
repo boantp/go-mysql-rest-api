@@ -11,7 +11,6 @@ services:
     working_dir: /go/src/go-mysql-rest-api
     command: go run main.go
     ports:
-      # 80 on the host, 8080 on the guest. Websever listens on 8080
       - "3000:3000" # http
     links:
       - db
@@ -27,17 +26,11 @@ services:
     image: my-mysql:1.0
     container_name: database.dev
     hostname: database.dev
-    #command: mysqld --user=root --verbose
     ports:
       - "3306:3306"
     environment:
-      #MYSQL_USER: root
-      #MYSQL_PASSWORD: pasaribu
       MYSQL_ROOT_PASSWORD: pasaribu
-      #MYSQL_ALLOW_EMPTY_PASSWORD="yes"
       MYSQL_DATABASE: shopee
-      #MYSQL_IP_ADDR: database.dev
-      #MYSQL_PORT: 3306
     # sync folders. MySQL data is stored outside container so that rebuilding doesn't clear db.
     # folder is at workspace root.
     volumes:

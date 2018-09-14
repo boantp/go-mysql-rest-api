@@ -63,15 +63,33 @@ func (cc CartController) CreateCart(w http.ResponseWriter, r *http.Request, p ht
 }
 
 type food struct {
-	models.Tax
+	StoreId     int     `json:"store_id"`
+	ProductName string  `json:"product_name"`
+	TaxCode     int     `json:"tax_code"`
+	TaxName     string  `json:"tax_name"`
+	Amount      float64 `json:"amount"`
+	TaxAmount   float64 `json:"tax_amount"`
+	TotalAmount float64 `json:"total_amount_item"`
 }
 
 type tobacco struct {
-	models.Tax
+	StoreId     int     `json:"store_id"`
+	ProductName string  `json:"product_name"`
+	TaxCode     int     `json:"tax_code"`
+	TaxName     string  `json:"tax_name"`
+	Amount      float64 `json:"amount"`
+	TaxAmount   float64 `json:"tax_amount"`
+	TotalAmount float64 `json:"total_amount_item"`
 }
 
 type entertainment struct {
-	models.Tax
+	StoreId     int     `json:"store_id"`
+	ProductName string  `json:"product_name"`
+	TaxCode     int     `json:"tax_code"`
+	TaxName     string  `json:"tax_name"`
+	Amount      float64 `json:"amount"`
+	TaxAmount   float64 `json:"tax_amount"`
+	TotalAmount float64 `json:"total_amount_item"`
 }
 
 type calculator interface {
